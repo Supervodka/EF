@@ -1,38 +1,20 @@
 ﻿using System;
-using System.Linq;
 using EF;
-using System;
 using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
-using Microsoft.Extensions.Configuration;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.Logging;
 
-var builder = new ConfigurationBuilder(); //класс для создания конфигурации
-
-//установка пути к текущему каталогу
-builder.SetBasePath(Directory.GetCurrentDirectory());
-
-//получаем конфигурацию из файла appsettings.json
-builder.AddJsonFile("appsettings.json");   //метод AddJsonFile() добавляет все настройки из файла конфигурации
-
-//создаём конфигурацию
-var config = builder.Build();// Build() создаёт объект конфигрурации из которого мы можем получить строку подключения 
-
-//получаем строку подключения 
-string connectionString = config.GetConnectionString("DefaultConnection"); //Для получения строки подключения используется ее имя - "DefaultConnection", которое указано в appsettings.json.
-
-var optionsBuilder = new DbContextOptionsBuilder<ApplicationContext>();
-var options = optionsBuilder
-    .UseSqlServer(connectionString)
-    .Options;
-
-using (ApplicationContext db = new ApplicationContext(options))
+using (ApplicationContext db = new ApplicationContext())
 {
-    var users = db.Users.ToList();
-    foreach (User u in users)
-    {
-        Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
-    }
-}
+    User user1 = new User { Name = "Tom", Age = 40 };
+    User user2 = new User { Name = "Alice", Age = 20 };
 
-Console.Read();
+    db.Users.Add(user1);
+    db.Users.Add(user2);
+    db.SaveChanges();
+    var users = db.Users.ToList();
+    Console.WriteLine("Данные после добавления");
+    foreach (User u in users)
+        Console.WriteLine($"{u.Id}.{u.Name} - {u.Age}");
+
+}Console.Read();

@@ -1,14 +1,11 @@
-﻿
-using System.Runtime.InteropServices;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using EF;
 
-namespace EF
-{
-    public class ApplicationContext :DbContext
+public class ApplicationContext :DbContext
     {
         public DbSet<User> Users { get; set; }
 
-        public ApplicationContext()
+        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
@@ -17,4 +14,4 @@ namespace EF
             optionsBuilder.UseSqlServer(@"Server=WS-779;Database=EFdb;Trusted_Connection=True;");
         }
     }
-}
+

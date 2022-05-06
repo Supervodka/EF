@@ -3,8 +3,6 @@ using EF;
 public class ApplicationContext : DbContext
 {
     public DbSet<Product> Products { get; set; }
-    public DbSet<Country> Countries { get; set; }
-    public DbSet<Company> Companys { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -13,7 +11,7 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Ignore<Company>();
+        modelBuilder.Entity<Product>().Ignore(a=>a.Description);
     }
 
 }

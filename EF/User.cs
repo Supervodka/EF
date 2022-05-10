@@ -7,12 +7,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 
  namespace EF
 {
-    public class User
-    {
-        public string? PassportNumber { get; set; }
-        public string? PassportSeria { get; set; }
-        public string? Name { get; set; }
-
+   
+        public class User
+        {
+        public int Id { get; set; }
+        public string Name { get; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public int Age { get; set; }
     }
+
+    
 
 }

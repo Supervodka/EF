@@ -9,9 +9,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 {
     public class User
     {
-        //Для установки свойства в качестве первичного ключа с помощью аннотаций применяется атрибут [Key]
-        [Key]
-        public int Ident { get; set; }
+        public string? PassportNumber { get; set; }
+        public string? PassportSeria { get; set; }
+        public string? Name { get; set; }
+
     }
 
 }

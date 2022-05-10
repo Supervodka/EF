@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace EF
+//По умолчанию в качестве ключа используется свойство, которое называется Id /UserId
+
+ namespace EF
 {
-    public class Product
+    public class User
     {
-    public int Id { get; set; }
-    public string? Name { get; set; }
-    public int Price { get; set; }
-    [NotMapped]
-    public string? Description { get; set; }
+        //Для установки свойства в качестве первичного ключа с помощью аннотаций применяется атрибут [Key]
+        [Key]
+        public int Ident { get; set; }
     }
 
 }

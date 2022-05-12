@@ -11,8 +11,8 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //То же самое можно сделать и через Fluent API с помощью метода IsRequired():
-        modelBuilder.Entity<User>().Property(u => u.Name).IsRequired();
+        //В Fluent API ограничение по длине устанавливается с помощью метода HasMaxLength():
+        modelBuilder.Entity<User>().Property(u => u.Name).HasMaxLength(50);
     }
 }
 

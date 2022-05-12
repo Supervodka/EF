@@ -8,18 +8,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace EF
 {
 
-    public class Company
+    public class User
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int Age { get; set; }
     }
 
-    public class Product
-    {
-        public int Ident { get; set; }
-        public string Name { get; set; }
-        public int Price { get; set; }
-    }
+  
 
 
 

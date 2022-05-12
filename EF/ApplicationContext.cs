@@ -11,7 +11,8 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<User>().Property(u => u.Name).HasComputedColumnSql("[FirstName] + '' + [LastName]");
+        //То же самое можно сделать и через Fluent API с помощью метода IsRequired():
+        modelBuilder.Entity<User>().Property(u => u.Name).IsRequired();
     }
 }
 

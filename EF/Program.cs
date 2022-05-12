@@ -7,12 +7,10 @@ using Microsoft.Extensions.Logging;
 
 using(ApplicationContext db = new ApplicationContext())
 {
-    User user1 = new User() { Name = " Tom" };
-    Console.WriteLine(user1.Name);
-    db.Users.Add(user1);
+    Product product1 = new Product {  Name = "Alex", Price = 300 };
+    Company company1 = new Company { Name = "wfafsfawf"};
+    db.AddRange(product1,company1);
     db.SaveChanges();
-    Console.WriteLine(user1.Name);
-
 
 }
 

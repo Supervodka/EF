@@ -11,8 +11,8 @@ public class ApplicationContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //В Fluent API ограничение по длине устанавливается с помощью метода HasMaxLength():
-        modelBuilder.Entity<User>().Property(u => u.Name).HasMaxLength(50);
+        //В Fluent API для подобной задачи применяется метод HasColumnType:
+        modelBuilder.Entity<User>().Property(u => u.Name).HasColumnType("varchar(200)");
     }
 }
 
